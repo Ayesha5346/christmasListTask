@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:techtiz/bloc/event.dart';
-import 'package:techtiz/bloc/list_bloc.dart';
-import 'package:techtiz/models/list_model.dart';
-import 'package:techtiz/views/home_view.dart';
+import 'package:techtiz/home/bloc/event.dart';
+import 'package:techtiz/home/bloc/list_bloc.dart';
+import 'package:techtiz/home/models/list_model.dart';
+import 'package:techtiz/home/views/home_view.dart';
 import '../helper/bloc_list_helper.dart';
 
 void main() {
@@ -24,7 +24,7 @@ void main() {
   Widget commonConfiguration() {
     return MaterialApp(
         home: BlocProvider(
-            create: (_) => ListBloc(),
+            create: (_) => ListBloc([]),
             child: Builder(
                 key: key,
                 builder: (context) {
@@ -52,7 +52,7 @@ void main() {
 
   testWidgets('Test to add item in Bloc list', (tester) async {
     await tester.pumpWidget(commonConfiguration());
-    ListBloc blocObject = ListBloc();
+    ListBloc blocObject = ListBloc([]);
     await tester.tap(find.byType(FloatingActionButton));
     await tester.pump();
     expect(addItemDialogueFinder, findsOneWidget);
@@ -65,14 +65,6 @@ void main() {
     expect(addItemDialogueFinder, findsNothing);
   });
 
-  // blocTest<ListBloc,ListState>('bloc test',
-  //     build: ()=>ListBloc(),
-  //     act:(bloc)=>bloc.add(ListAddEvent(christmasListObject: ChristmasEntry(name: 'Abdullah', country: 'Pakistan', status: 'nice'))),
-  //     expect: ()=> [
-  //       ListStateLoading(),
-  //       ListStateSuccess(kidsNameList: [])
-  //     ]
-  // );
   testWidgets('Test to check if ListView is being populated', (tester) async {
     await tester.pumpWidget(commonConfiguration());
     final blocContext = key.currentContext;

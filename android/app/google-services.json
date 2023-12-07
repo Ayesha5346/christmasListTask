@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "338525392672",
+    "project_id": "christmaslistproject-10374",
+    "storage_bucket": "christmaslistproject-10374.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338525392672:android:165016b42392ed29855145",
+        "android_client_info": {
+          "package_name": "com.example.techtiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBFdGzoI6-uYN17-UFtwQPHIJsTfzoWB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

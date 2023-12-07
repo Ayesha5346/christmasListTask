@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import '../models/list_model.dart';
 
-sealed class ListEvent extends Equatable{
+class ListEvent extends Equatable{
   @override
   List<Object?> get props => [];
 }

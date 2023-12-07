@@ -1,4 +1,4 @@
-import 'package:techtiz/models/list_model.dart';
+import 'package:techtiz/home/models/list_model.dart';
 
 class BlocListHelper{
   final List nameList =[

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:techtiz/bloc/list_bloc.dart';
 import 'package:techtiz/widgets/message.dart';
-import '../models/list_model.dart';
+import '../../utils/styles.dart';
+import '../../widgets/form_dialog.dart';
+import '../../widgets/form_field.dart';
 import '../bloc/event.dart';
+import '../bloc/list_bloc.dart';
 import '../bloc/state.dart';
-import '../utils/styles.dart';
-import '../widgets/form_dialog.dart';
-import '../widgets/form_field.dart';
+import '../models/list_model.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,8 +84,10 @@ class _HomePageState extends State<HomePage> {
                           );
                         }
                       });
-                } else {
-                  return const Center(key:Key('FailureTextCenter'),child: Text(key: Key('ListErrorText'),'some error occurred',textDirection: TextDirection.ltr,));
+                } else if(state is ListStateFailure){
+                  return  Center(key:const Key('FailureTextCenter'),child: Text(key: const Key('ListErrorText'), state.error,textDirection: TextDirection.ltr,));
+                }else{
+                  return const Center(key:Key('LoadingTextCenter'),child: Text(key:Key('ListLoadingText'),'List is empty, add items',textDirection: TextDirection.ltr,));
                 }
               },
             ))
@@ -94,7 +97,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void addItemInblocList( BuildContext blocContext){
+  void addItemInBlocList( BuildContext blocContext){
     ChristmasEntry object = ChristmasEntry(name: nameController.text, country: countryController.text, status: statusController.text);
     blocContext.read<ListBloc>().add(ListAddEvent(christmasListObject: object));
     nameController.clear();
@@ -133,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                       key: const Key('addButtonKey') ,
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            addItemInblocList(blocContext);
+                            addItemInBlocList(blocContext);
                           } else {
                             showMessage(context, 'Fill All Fields');
                           }
