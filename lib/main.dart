@@ -4,12 +4,11 @@ import 'firebase_options.dart';
 import 'authentication/views/app.dart';
 
 void main()async {
-  // Bloc.observer = const listblocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 
